@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React from "react";
+import { SafeAreaView } from "react-native";
+import ProductList from "./components/ProductList";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => {
+    const products = [
+        {
+            id: 1,
+            title: "Product 1",
+            description: "Description for Product 1",
+            price: 19.99,
+        },
+        {
+            id: 2,
+            title: "Product 2",
+            description: "Description for Product 2",
+            price: 29.99,
+        },
+        // Add more products as needed
+    ];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    return (
+        <SafeAreaView>
+            <ProductList products={products} />
+        </SafeAreaView>
+    );
+};
+
+export default App;
