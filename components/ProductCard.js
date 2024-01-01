@@ -1,42 +1,43 @@
-// ProductCard.js
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import {
+  GestureHandlerRootView,
+  Swipeable,
+} from "react-native-gesture-handler";
+import { DeleteButton } from "./DeleteButton";
 
-const ProductCard = ({ title, description, price }) => {
-    return (
+const ProductCard = ({ title, description, price, onDelete }) => {
+  const renderRightActions = () => <DeleteButton onPress={onDelete} />;
+
+  return (
+    <GestureHandlerRootView>
+      <Swipeable renderRightActions={renderRightActions}>
         <View style={styles.product}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.description}>{description}</Text>
-            <Text style={styles.price}>${price}</Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.description}>{description}</Text>
+          <Text style={styles.price}>${price}</Text>
         </View>
-    );
+      </Swipeable>
+    </GestureHandlerRootView>
+  );
 };
 
 const styles = StyleSheet.create({
-    product: {
-        padding: 16,
-        marginBottom: 16,
-        borderColor: "#808080",
-        borderRadius: 10,
-        backgroundColor: "#fff",
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        elevation: 2,
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: "bold",
-    },
-    description: {
-        color: "#888",
-    },
-    price: {
-        marginTop: 8,
-        color: "#27ae60",
-        fontWeight: "bold",
-    },
+  product: {
+    margin: 10,
+  },
+  title: {
+    fontSize: 18,
+    marginBottom: 5,
+    fontWeight: "bold",
+  },
+  description: {
+    color: "#888",
+  },
+  price: {
+    color: "#27ae60",
+    fontWeight: "bold",
+  },
 });
 
 export default ProductCard;
